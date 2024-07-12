@@ -1,33 +1,20 @@
 package br.com.alura.screenmatch.modelos;
 
-public class Filme {
-    private String nome;
-    private int anoDeLancamento;
-    private boolean incluidonoPlano;
-    private double somaDasAvaliacoes;
-    private int totalAvaliacoes;
-    private int duracaoEmMinutos;
+import br.com.alura.screenmatch.calculos.Classificavel;
 
-    public int getTotalAvaliacoes(){
-        return totalAvaliacoes;
+public class Filme extends Titulo implements Classificavel {
+    private String diretor;
+
+    public String getDiretor() {
+        return diretor;
     }
 
-    public void exibeFichaTecnica(){
-        String resumo = """
-                Nome do filme: %s
-                Ano de lançamento: %d
-                """.formatted(nome, anoDeLancamento);
-        System.out.println(resumo);
+    public void setDiretor(String diretor) {
+        this.diretor = diretor;
     }
 
-    public void avalia(double nota){
-         somaDasAvaliacoes += nota;
-         totalAvaliacoes += 1;
+    @Override
+    public int getClassificacao() {
+        return (int) pegaMedia()/2;
     }
-
-    public double MediaDasAvaliacoes(){
-        return somaDasAvaliacoes/totalAvaliacoes;
-    }
-
-
 }
